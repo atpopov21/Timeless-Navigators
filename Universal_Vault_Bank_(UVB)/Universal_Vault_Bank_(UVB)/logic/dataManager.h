@@ -1,5 +1,5 @@
 #pragma once
 
 bool checkForAccount();
-bool accessAccount();
+bool accessAccount(std::ifstream& database);
 void mainPage();

@@ -11,15 +11,13 @@ void displayLoginPage()
 {
 	system("cls");
 
-	//Temporary output...
-	std::cout << "Username: ";
-	std::cout << "Password: ";
 }
 
 void displayMainPage()
 {
 	system("cls");
-
+	//Temporary output...
+	std::cout << "Congrats! You're in!";
 }
 
 void entryVoilation()

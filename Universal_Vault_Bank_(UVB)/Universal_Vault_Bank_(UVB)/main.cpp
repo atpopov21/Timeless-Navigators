@@ -2,13 +2,15 @@
 
 int main()
 {
+	//Reading database (from .txt file)
+	std::ifstream database("data/userData.txt");
+
 	displayAccountCheckPage();
 	
 	if (checkForAccount())
 	{
-		if (accessAccount())
+		if (accessAccount(database))
 		{
-			displayMainPage();
 			mainPage();
 		}
 		else
@@ -20,4 +22,6 @@ int main()
 	{
 
 	}
+
+	database.close();
 }

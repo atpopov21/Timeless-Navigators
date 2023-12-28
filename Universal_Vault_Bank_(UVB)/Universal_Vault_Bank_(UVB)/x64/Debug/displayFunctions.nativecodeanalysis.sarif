@@ -1,0 +1,67 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.37.32825.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/aleksandar/source/repos/universal_vault_bank_(uvb)/universal_vault_bank_(uvb)/logic/displayfunctions.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "069d873c72c427426b1401fd6543366f750bafa27ca6b095f7ffd1ae5ec24d19"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/aleksandar/source/repos/universal_vault_bank_(uvb)/universal_vault_bank_(uvb)/logic/precompile.h"
+          },
+          "hashes": {
+            "sha-256": "079ad8c661aefc443d00b7f730c272276030f5a522536de26875367d9f002a8d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/aleksandar/source/repos/universal_vault_bank_(uvb)/universal_vault_bank_(uvb)/logic/datamanager.h"
+          },
+          "hashes": {
+            "sha-256": "7c5ca38acf0d2b4ce52d5b63517d181555c231d62a03fa51906174befcf1aa50"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/aleksandar/source/repos/universal_vault_bank_(uvb)/universal_vault_bank_(uvb)/logic/datamanager.cpp"
+          },
+          "hashes": {
+            "sha-256": "d0b1314ba0fb76e7d8108f3238a1d168db9c51c5ed6e9da040f0c5fbf6a59fad"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/aleksandar/source/repos/universal_vault_bank_(uvb)/universal_vault_bank_(uvb)/logic/displayfunctions.h"
+          },
+          "hashes": {
+            "sha-256": "1d4e1538c3eb11061a95df7082645a022afadbfc043597e18b6ce31a8f994ba2"
+          }
+        }
+      ]
+    }
+  ]
+}

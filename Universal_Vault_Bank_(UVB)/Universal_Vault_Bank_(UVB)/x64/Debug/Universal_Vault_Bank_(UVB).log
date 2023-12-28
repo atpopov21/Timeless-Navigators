@@ -1,0 +1,5 @@
+﻿  dataManager.cpp
+C:\Users\Aleksandar\source\repos\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.cpp(30,39): error C2110: '+': cannot add two pointers
+  displayFunctions.cpp
+  main.cpp
+  Generating Code...

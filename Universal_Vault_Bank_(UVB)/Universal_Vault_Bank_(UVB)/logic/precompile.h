@@ -6,6 +6,7 @@
 #include <string>
 #include <conio.h>
 #include <fstream>
+#include <windows.h>
 
 #include "dataManager.h"
 #include "displayFunctions.h"

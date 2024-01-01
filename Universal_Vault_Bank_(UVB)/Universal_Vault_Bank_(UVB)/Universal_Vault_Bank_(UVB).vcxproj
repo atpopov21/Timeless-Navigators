@@ -136,6 +136,9 @@
     <ClInclude Include="logic\displayFunctions.h" />
     <ClInclude Include="logic\precompile.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\userData.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

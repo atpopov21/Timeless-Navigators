@@ -6,10 +6,10 @@
 </p>
 
 <p align = "center">
-   <img src = "https://img.shields.io/github/languages/count/SPGeorgieva21/Timeless-Navigators?style=flat">
-   <img src = "https://img.shields.io/github/repo-size/SPGeorgieva21/Timeless-Navigators?style=flat">
-   <img src = "https://img.shields.io/github/stars/SPGeorgieva21/Timeless-Navigators?style=social">
-   <img src = "https://img.shields.io/github/contributors/SPGeorgieva21/Timeless-Navigators?style=flat">
+   <img src = "https://img.shields.io/github/languages/count/atpopov21/Timeless-Navigators?style=flat">
+   <img src = "https://img.shields.io/github/repo-size/atpopov21/Timeless-Navigators?style=flat">
+   <img src = "https://img.shields.io/github/stars/atpopov21/Timeless-Navigators?style=social">
+   <img src = "https://img.shields.io/github/contributors/atpopov21/Timeless-Navigators?style=flat">
 </p>
 	
 ## :pencil: Table of Contents
@@ -41,6 +41,6 @@
 - [Николета Русева](https://github.com/NRRuseva21) - Front-End Developer
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
-+ [Presentation](https://github.com/SPGeorgieva21/Timeless-Navigators/blob/main/Documents/Presentation.ods)
-+ [Documentation](https://github.com/SPGeorgieva21/Timeless-Navigators/blob/main/Documents/Documentation.docx)
-+ [QA Documentation](https://github.com/SPGeorgieva21/Timeless-Navigators/blob/main/Documents/QA%20Documentation.xlsx)
++ [Presentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Presentation.ods)
++ [Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Documentation.docx)
++ [QA Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/QA%20Documentation.xlsx)

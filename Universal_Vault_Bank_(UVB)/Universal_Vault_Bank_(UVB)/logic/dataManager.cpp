@@ -2,7 +2,7 @@
 
 bool checkForAccount()
 {
-	int userInput = 0;
+	/*int userInput = 0;
 	while (userInput != 121 && userInput != 110)
 	{
 		userInput = _getch();
@@ -13,6 +13,21 @@ bool checkForAccount()
 		return true;
 	}
 
+	return false;*/
+	
+	int userInput = 0;/*49 - 52*/
+	while (userInput < 49 && userInput > 52)
+	{
+		userInput = _getch();
+	}
+
+	switch (userInput)
+	{
+	case 49: return 1; break;
+	case 50: return 2; break;
+	case 51: return 3; break;
+	case 52: return 4; break;
+	}
 	return false;
 }
 

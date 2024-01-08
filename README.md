@@ -38,7 +38,9 @@
 - [Стела Георгиева](https://github.com/SPGeorgieva21) - Scrum Trainer 
 - [Александра Желева](https://github.com/AMZheleva21) - Front-End Developer
 - [Александър Попов](https://github.com/ATPopov21) - Back-End Developer
-- [Николета Русева](https://github.com/NRRuseva21) - Front-End Developer
+- [Николета Русева](https://github.com/NRRuseva21) - Back-End Developer
+- [Полина Динева](https://github.com/PSDineva21) - Back-End Developer
+
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
 + [Presentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Presentation.ods)

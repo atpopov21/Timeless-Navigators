@@ -1,6 +1,7 @@
 # Timeless-Navigators
 <p align="center">
   <a href=" rel="noopener">
+  <img src="Images/Digita_logo.png" alt="Logo" width=25% height=25%>
   <img src="Images/gameLogo.png" alt="Logo" width=25% height=25%>
   </a>
 </p>

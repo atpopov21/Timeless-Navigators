@@ -118,6 +118,19 @@ void displayAccountPage(std::string& username, std::string& password, std::strin
 	if (!makeAccount)
 	{
 		// Output: Login
+		std::cout << "*          *****       *****        ***   *     * \n";
+		std::cout << "*         *     *     *     *        *    **    * \n";
+		std::cout << "*        *       *   *               *    * *   *  \n";
+		std::cout << "*        *       *   *   ****        *    *  *  *   \n";
+		std::cout << "*        *       *   *       *       *    *   * *   \n";
+		std::cout << "*         *     *     *     *        *    *    **   \n";
+		std::cout << "*******    *****       *****        ***   *     *   \n";
+
+		std::cout << "----------------------------------------------------" << std::endl;
+		std::cout << "----------------------------------------------------" << std::endl;
+
+		std::cout << "----------------------------------------------------" << std::endl;
+		std::cout << "----------------------------------------------------" << std::endl;
 		
 		// Temporary output... ALWAYS USE the getline() function to prevent bugs; P.S DO NOT DELETE the rows with comments: "*"
 		std::cout << "Username: ";
@@ -146,6 +159,38 @@ void displayMainPage(std::string& username, std::string& password, std::string& 
 	std::cout << "Congrats! You're in!";
 
 	// Place Post MENU visuals here
+	std::cout << std::setw(104) << "*****     *    *     *  *   *            " << std::endl;
+	std::cout << std::setw(104) << "*    *   * *   **    *  *  *             " << std::endl;
+	std::cout << std::setw(104) << "*    *  *   *  * *   *  * *              " << std::endl;
+	std::cout << std::setw(104) << "****** ******* *  *  *  **               " << std::endl;
+	std::cout << std::setw(104) << " *    * *     * *   * *  * *              " << std::endl;
+	std::cout << std::setw(104) << "*    * *     * *    **  *  *             " << std::endl;
+	std::cout << std::setw(104) << "*****  *     * *     *  *   *            " << std::endl;
+
+
+	HANDLE k = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(k, 9);
+
+
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
+
+	std::cout << std::setw(90) << "UNIVERSAL VAULT BANK" << std::endl;
+
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
+
+
+	std::cout << std::setw(82) << "MENU" << std::endl;
+
+	std::cout << std::setw(85) << "----------------" << std::endl;
+	std::cout << std::setw(85) << "Press \"D\" to make your digital will" << std::endl;
+	std::cout << std::setw(78) << "Press 2 to view cripto...." << std::endl;
+	std::cout << std::setw(85) << "----------------" << std::endl;
+
+
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
+	std::cout << std::setw(110) << "-------------------------------------------------------------" << std::endl;
 }
 
 void displayDigitalWill()

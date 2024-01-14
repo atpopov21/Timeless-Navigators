@@ -5,6 +5,7 @@
 #include <cmath>
 #include <random>
 #include <string>
+#include <vector>
 #include <conio.h>
 #include <fstream>
 #include <windows.h>

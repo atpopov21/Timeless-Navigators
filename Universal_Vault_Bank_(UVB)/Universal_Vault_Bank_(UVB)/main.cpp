@@ -21,7 +21,7 @@ int main()
 	{
 		if (accessAccount(database))
 		{
-			mainPage();
+			mainPage(true);
 		}
 		else
 		{
@@ -33,7 +33,7 @@ int main()
 		if (makeAccount())
 		{
 			successfulRegistration();
-			mainPage();
+			mainPage(false);
 		}
 	}
 }

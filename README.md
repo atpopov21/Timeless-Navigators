@@ -2,7 +2,7 @@
 <p align="center">
   <a href=" rel="noopener">
   <img src="Images/Digita_logo.png" alt="Logo" width=25% height=25%>
-  <img src="Images/gameLogo.png" alt="Logo" width=25% height=25%>
+  <img src="Images/UVB_logo.png" alt="Logo" width=25% height=25%>
   </a>
 </p>
 
@@ -44,6 +44,6 @@
 
 
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
-+ [Presentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Presentation.ods)
++ [Presentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Timeless_Navigators.pptx)
 + [Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Documentation.docx)
 + [QA Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/QA%20Documentation.xlsx)

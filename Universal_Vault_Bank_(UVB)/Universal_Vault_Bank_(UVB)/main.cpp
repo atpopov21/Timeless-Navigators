@@ -32,6 +32,7 @@ int main()
 	{
 		if (makeAccount())
 		{
+			successfulRegistration();
 			mainPage();
 		}
 	}

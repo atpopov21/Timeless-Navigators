@@ -2,32 +2,17 @@
 
 bool checkForAccount()
 {
-	/*int userInput = 0;
-	while (userInput != 121 && userInput != 110)
+	int userInput = 0;
+	while (userInput != 108 && userInput != 114)
 	{
 		userInput = _getch();
 	}
 
-	if (userInput == 121)
+	if (userInput == 108)
 	{
 		return true;
 	}
 
-	return false;*/
-	
-	int userInput = 0;/*49 - 52*/
-	while (userInput < 49 && userInput > 52)
-	{
-		userInput = _getch();
-	}
-
-	switch (userInput)
-	{
-	case 49: return 1; break;
-	case 50: return 2; break;
-	case 51: return 3; break;
-	case 52: return 4; break;
-	}
 	return false;
 }
 
@@ -39,8 +24,8 @@ bool accessAccount(std::ifstream& database)
 	std::string* checkCredentials = new std::string();
 	std::string* accountNotFound = new std::string("Account not found. Please try again."), *instructions = new std::string("Press \"Enter\" to continue...");
 
-	// Entering while-loop for credentials check
-	while (*checkCredentials != (*username + " " + *password))
+	// Entering do-while-loop for credentials check
+	do
 	{
 		displayAccountPage(*username, *password, false);
 
@@ -50,15 +35,39 @@ bool accessAccount(std::ifstream& database)
 			std::getline(database, *checkCredentials);
 			if (*checkCredentials == (*username + " " + *password))
 			{
+				// Closing database and releasing memory
 				database.close();
+				delete (username);
+				delete (password);
+				delete (checkCredentials);
+				delete (accountNotFound);
+				delete (instructions);
 				return true;
 			}
+		}
+
+		if (*checkCredentials == (*username + " " + *password))
+		{
+			// Closing database and releasing memory
+			database.close();
+			delete (username);
+			delete (password);
+			delete (checkCredentials);
+			delete (accountNotFound);
+			delete (instructions);
+			return true;
 		}
 
 		// Check for entry violation
 		if (countFailedAttempts >= 5)
 		{
+			// Closing database and releasing memory
 			database.close();
+			delete (username);
+			delete (password);
+			delete (checkCredentials);
+			delete (accountNotFound);
+			delete (instructions);
 			return false;
 		}
 
@@ -71,14 +80,19 @@ bool accessAccount(std::ifstream& database)
 		{
 			userInput = _getch();
 		}
-	}
+	} while (*checkCredentials != (*username + " " + *password));
 
-	// Closing database
+	// Closing database and releasing memory
 	database.close();
+	delete (username);
+	delete (password);
+	delete (checkCredentials);
+	delete (accountNotFound);
+	delete (instructions);
 	return true;
 }
 
-bool makeAccount()
+bool makeAccount()		// Error with extracting number of accounts
 {
 	system("cls");
 
@@ -87,16 +101,17 @@ bool makeAccount()
 	std::ofstream databaseWRITE("../data/userData.txt");
 
 	// Declaring and initializing variables
-	int accountCount = 0;
+	int accountCount = 0, checkForSpace = 0;
 	std::string* getAccountCount = new std::string();
 	std::string* reWriteInfo = new std::string("");
 	std::string* username = new std::string(), * password = new std::string();
 	std::string* checkForAccountDuplicate = new std::string("");
-	std::string* errorStatement1 = new std::string("Please enter valid username... (starting symbol should be from the alphabet)"), * instructions = new std::string("Press \"Enter\" to continue...");
+	std::string* errorStatement1 = new std::string("Please enter valid username... (only symbols from the alphabet|space between the first and last name)"), * instructions = new std::string("Press \"Enter\" to continue...");
 	std::string* errorStatement2 = new std::string("Username already exist. Please try a different one");
 
 	// Extracting the account count from database
 	databaseREAD >> *getAccountCount;
+	std::cout << *getAccountCount;
 	accountCount = std::stoi(*getAccountCount);
 
 	displayAccountPage(*username, *password, true);
@@ -119,38 +134,106 @@ bool makeAccount()
 	}
 
 	// Checking username for invalid actions
-	if (!((std::stoi(username[0]) >= 65 && std::stoi(username[0]) <= 90) && (std::stoi(username[0]) >= 97 && std::stoi(username[0]) <= 122)))
+	for (size_t i = 0; i < username->length(); i++)
 	{
-		std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-		int userInput = 0;
-		while (userInput != 13)
+		// Check if the first symbol is in uppercase
+		if (!(int((*username)[0]) >= 65 && int((*username)[0]) <= 90))
 		{
-			userInput = _getch();
-		}
+			std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
 
-		makeAccount();
-	}
-	else
-	{
-		// Rewriting database
-		for (int i = 0; i < accountCount; i++)
-		{
-			if (i == 0)
+			int userInput = 0;
+			while (userInput != 13)
 			{
-				databaseWRITE << ++accountCount;
+				userInput = _getch();
 			}
-			std::getline(databaseREAD, *reWriteInfo);
-			databaseWRITE << *reWriteInfo << '\n';
+
+			makeAccount();
 		}
 
-		databaseWRITE << *username << " ";
-		databaseWRITE << *password;
+		// Switch from first name to surname
+		if (username[i - checkForSpace] == " ")
+		{
+			if (checkForSpace <= 2)
+			{
+				checkForSpace++;
+				if (checkForSpace == 2)
+				{
+					// Check if the symbol is in uppercase
+					if (!(int((*username)[i]) >= 65 && int((*username)[i]) <= 90))
+					{
+						std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
+
+						int userInput = 0;
+						while (userInput != 13)
+						{
+							userInput = _getch();
+						}
+
+						makeAccount();
+					}
+				}
+			}
+		}
+
+		if (checkForSpace <= 0 && checkForSpace >= 3)
+		{
+			// Check if symbols are in lowercase
+			if (!(int((*username)[i]) >= 97 && int((*username)[i]) <= 122))
+			{
+				std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
+
+				int userInput = 0;
+				while (userInput != 13)
+				{
+					userInput = _getch();
+				}
+
+				makeAccount();
+			}
+		}
+
+		// Check if symbols are from the alphabet
+		if (!((int((*username)[i]) >= 65 && int((*username)[i]) <= 90) && (int((*username)[i]) >= 97 && int((*username)[i]) <= 122)))
+		{
+			std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
+
+			int userInput = 0;
+			while (userInput != 13)
+			{
+				userInput = _getch();
+			}
+
+			makeAccount();
+		}
+		else
+		{
+			// Rewriting database
+			for (int j = 0; j < accountCount; j++)
+			{
+				if (j == 0)
+				{
+					databaseWRITE << ++accountCount;
+				}
+				std::getline(databaseREAD, *reWriteInfo);
+				databaseWRITE << *reWriteInfo << '\n';
+			}
+
+			databaseWRITE << *username << " ";
+			databaseWRITE << *password;
+		}
 	}
 
-	// Closing database
+	// Closing database and releasing memory
 	databaseWRITE.close();
 	databaseREAD.close();
+	delete(getAccountCount);
+	delete(reWriteInfo);
+	delete(username);
+	delete(password);
+	delete(checkForAccountDuplicate);
+	delete(errorStatement1);
+	delete(instructions);
+	delete(errorStatement2);
 	return true;
 }
 

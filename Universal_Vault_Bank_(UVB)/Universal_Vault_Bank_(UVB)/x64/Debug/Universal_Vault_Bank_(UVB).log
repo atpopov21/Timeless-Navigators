@@ -1,5 +1,2 @@
 ﻿  dataManager.cpp
-C:\Users\alexz\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.cpp(27,18): warning C4305: 'return': truncation from 'int' to 'bool'
-C:\Users\alexz\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.cpp(28,18): warning C4305: 'return': truncation from 'int' to 'bool'
-C:\Users\alexz\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.cpp(29,18): warning C4305: 'return': truncation from 'int' to 'bool'
-  Universal_Vault_Bank_(UVB).vcxproj -> C:\Users\alexz\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\x64\Debug\Universal_Vault_Bank_(UVB).exe
+  Universal_Vault_Bank_(UVB).vcxproj -> C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\x64\Debug\Universal_Vault_Bank_(UVB).exe

@@ -12,7 +12,7 @@ int main()
 
 	SetWindowLong(console, GWL_STYLE, GetWindowLong(console, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 
-	//Reading database (from .txt file)
+	// Reading database
 	std::ifstream database("data/userData.txt");
 
 	displayAccountCheckPage();

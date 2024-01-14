@@ -1,5 +1,18 @@
 #include "precompile.h"
 
+int countWriteTime = 0;
+std::string* usernameLogged = new std::string(), *userID = new std::string(), *userMoney = new std::string();
+
+void waitForKey()
+{
+	// Check if the "Enter" key is pressed
+	int userInput = 0;
+	while (userInput != 13)
+	{
+		userInput = _getch();
+	}
+}
+
 bool checkForAccount()
 {
 	int userInput = 0;
@@ -24,6 +37,11 @@ bool accessAccount(std::ifstream& database)
 	std::string* checkCredentials = new std::string();
 	std::string* accountNotFound = new std::string("Account not found. Please try again."), *instructions = new std::string("Press \"Enter\" to continue...");
 
+	if (!database.is_open())
+	{
+		std::cout << "FATAL ERORR => Database failed to open.";
+	}
+
 	// Entering do-while-loop for credentials check
 	do
 	{
@@ -42,6 +60,10 @@ bool accessAccount(std::ifstream& database)
 				delete (checkCredentials);
 				delete (accountNotFound);
 				delete (instructions);
+
+				//*usernameLogged = *username;
+
+
 				return true;
 			}
 		}
@@ -74,12 +96,7 @@ bool accessAccount(std::ifstream& database)
 		countFailedAttempts++;
 		std::cout << std::setw(63 + (accountNotFound->length() / 2))<< *accountNotFound << '\n' << std::setw(72) << "Retries remaining: " << 6 - countFailedAttempts << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
 
-		// Check if the "Enter" key is pressed
-		int userInput = 0;
-		while (userInput != 13)
-		{
-			userInput = _getch();
-		}
+		waitForKey();
 	} while (*checkCredentials != (*username + " " + *password));
 
 	// Closing database and releasing memory
@@ -95,63 +112,138 @@ bool accessAccount(std::ifstream& database)
 bool makeAccount()
 {
 	system("cls");
-
-	return true;	// DELETE THIS after completing the registration code
-	// Loading read/write databases
-	std::ifstream databaseREAD("../data/userData.txt");
-	std::ofstream databaseWRITE("../data/userData.txt");
-
-	// Declaring and initializing variables
-	int accountCount = 1, checkForSpace = 0;
-	std::string* getAccountCount = new std::string();
-	std::string* reWriteInfo = new std::string("");
-	std::string* username = new std::string(""), * password = new std::string("");
-	std::string* checkForAccountDuplicate = new std::string("");
-	std::string* errorStatement1 = new std::string("Please enter valid username... (only symbols from the alphabet|space between the first and last name)"), * instructions = new std::string("Press \"Enter\" to continue...");
-	std::string* errorStatement2 = new std::string("Username already exist. Please try a different one");
-
-	// Extracting the account count from database
-	/*databaseREAD >> *getAccountCount;
-	std::cout << *getAccountCount;
-	accountCount = std::stoi(*getAccountCount);*/
+	// Loading databases
+	std::ifstream userDataREAD("data/userData.txt");
+	std::ofstream userDataWRITE("data/userData.txt", std::ios::app);  // Open the file in append mode
+	
+	int checkForSpace = 0;
+	std::string* username = new std::string(), *password = new std::string(), *checkForAccountDuplicate = new std::string("");
 
 	displayAccountPage(*username, *password, true);
 
-	// Check if username already exists
-	while (databaseREAD >> *checkForAccountDuplicate)
+	if (userDataWRITE.is_open() && userDataREAD.is_open())
 	{
-		if (*checkForAccountDuplicate == *username)
+		// Check if username already exists
+		while (userDataREAD >> *checkForAccountDuplicate)
 		{
-			std::cout << std::setw(63 + (errorStatement2->length() / 2)) << '\n' << std::setw(18 + instructions->length() / 2) << *instructions;
-			
-			int userInput = 0;
-			while (userInput != 13)
+			if (*checkForAccountDuplicate == *username)
 			{
-				userInput = _getch();
-			}
+				std::cout << "Username already exists...";
 
+				waitForKey();
+				makeAccount();
+			}
+		}
+
+		if ((*username)[0] == 0 || (*username)[0] == 32)
+		{
+			std::cout << "Invalid username...";
+
+			waitForKey();
 			makeAccount();
 		}
+
+		for (size_t i = 0; i < username->length(); i++)
+		{
+			if (i == 0)
+			{
+				// Check if the first symbol is in uppercase
+				if (!((*username)[0] >= 65 && (*username)[0] <= 90))
+				{
+					std::cout << "First letter should be in uppercase...";
+
+					waitForKey();
+					makeAccount();
+				}
+			}
+
+			if ((*username)[i - checkForSpace] == 32)
+			{
+				if (checkForSpace <= 2)
+				{
+					checkForSpace++;
+					if (checkForSpace == 2)
+					{
+						// Check if the symbol is in uppercase
+						if (!((*username)[i] >= 65 && (*username)[i] <= 90))
+						{
+							std::cout << "Surname letter should be in uppercase...";
+
+							waitForKey();
+							makeAccount();
+						}
+					}
+				}
+			}
+
+			if (checkForSpace == 0 || checkForSpace == 3)
+			{
+				// Check if symbols are in lowercase
+				if (i != 0)
+				{
+					if (!((*username)[i] >= 97 && (*username)[i] <= 122))
+					{
+						std::cout << "Invalid username LOWERCASE SYMBOLS CHECK...";
+
+						waitForKey();
+						makeAccount();
+					}
+				}
+			}
+
+			// Check if symbols are from the alphabet
+			if (!(((*username)[i] >= 65 && (*username)[i] <= 90) || ((*username)[i] >= 97 && (*username)[i] <= 122) || (*username)[i] == 32))
+			{
+				std::cout << "Use symbols only from the alphabet...";
+
+				waitForKey();
+				makeAccount();
+			}
+
+			if ((*password)[0] == 0 || (*password)[0] == 32)
+			{
+				std::cout << "Invalid password...";
+
+				waitForKey();
+				makeAccount();
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		if (countWriteTime == 0)
+		{
+			userDataWRITE << *username << " " << *password << '\n';
+			std::cout << "Registration successful!\n";
+			countWriteTime++;
+		}
+	}
+	else 
+	{
+		std::cerr << "Error opening the user database file.\n";
 	}
 
-	// Closing database and releasing memory
-	databaseWRITE.close();
-	databaseREAD.close();
-	delete(getAccountCount);
-	delete(reWriteInfo);
+	// Closing databases and releasing memory
+	userDataWRITE.close();
+	userDataREAD.close();
 	delete(username);
 	delete(password);
 	delete(checkForAccountDuplicate);
-	delete(errorStatement1);
-	delete(instructions);
-	delete(errorStatement2);
 	return true;
 }
 
 void mainPage()
 {
 	displayMainPage();
+	
 
+
+	// Closing database and releasing memory
+	delete (usernameLogged);
+	delete (userID);
+	delete (userMoney);
 }
 
 long int generateUserBankNumber()

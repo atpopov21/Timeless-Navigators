@@ -40,5 +40,11 @@
     <Text Include="data\userData.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="data\userBankData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="data\userSecurityData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

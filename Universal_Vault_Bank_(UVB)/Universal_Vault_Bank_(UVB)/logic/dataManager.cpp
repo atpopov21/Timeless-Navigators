@@ -92,27 +92,28 @@ bool accessAccount(std::ifstream& database)
 	return true;
 }
 
-bool makeAccount()		// Error with extracting number of accounts
+bool makeAccount()
 {
 	system("cls");
 
+	return true;	// DELETE THIS after completing the registration code
 	// Loading read/write databases
 	std::ifstream databaseREAD("../data/userData.txt");
 	std::ofstream databaseWRITE("../data/userData.txt");
 
 	// Declaring and initializing variables
-	int accountCount = 0, checkForSpace = 0;
+	int accountCount = 1, checkForSpace = 0;
 	std::string* getAccountCount = new std::string();
 	std::string* reWriteInfo = new std::string("");
-	std::string* username = new std::string(), * password = new std::string();
+	std::string* username = new std::string(""), * password = new std::string("");
 	std::string* checkForAccountDuplicate = new std::string("");
 	std::string* errorStatement1 = new std::string("Please enter valid username... (only symbols from the alphabet|space between the first and last name)"), * instructions = new std::string("Press \"Enter\" to continue...");
 	std::string* errorStatement2 = new std::string("Username already exist. Please try a different one");
 
 	// Extracting the account count from database
-	databaseREAD >> *getAccountCount;
+	/*databaseREAD >> *getAccountCount;
 	std::cout << *getAccountCount;
-	accountCount = std::stoi(*getAccountCount);
+	accountCount = std::stoi(*getAccountCount);*/
 
 	displayAccountPage(*username, *password, true);
 
@@ -130,96 +131,6 @@ bool makeAccount()		// Error with extracting number of accounts
 			}
 
 			makeAccount();
-		}
-	}
-
-	// Checking username for invalid actions
-	for (size_t i = 0; i < username->length(); i++)
-	{
-		// Check if the first symbol is in uppercase
-		if (!(int((*username)[0]) >= 65 && int((*username)[0]) <= 90))
-		{
-			std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-			int userInput = 0;
-			while (userInput != 13)
-			{
-				userInput = _getch();
-			}
-
-			makeAccount();
-		}
-
-		// Switch from first name to surname
-		if (username[i - checkForSpace] == " ")
-		{
-			if (checkForSpace <= 2)
-			{
-				checkForSpace++;
-				if (checkForSpace == 2)
-				{
-					// Check if the symbol is in uppercase
-					if (!(int((*username)[i]) >= 65 && int((*username)[i]) <= 90))
-					{
-						std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-						int userInput = 0;
-						while (userInput != 13)
-						{
-							userInput = _getch();
-						}
-
-						makeAccount();
-					}
-				}
-			}
-		}
-
-		if (checkForSpace <= 0 && checkForSpace >= 3)
-		{
-			// Check if symbols are in lowercase
-			if (!(int((*username)[i]) >= 97 && int((*username)[i]) <= 122))
-			{
-				std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-				int userInput = 0;
-				while (userInput != 13)
-				{
-					userInput = _getch();
-				}
-
-				makeAccount();
-			}
-		}
-
-		// Check if symbols are from the alphabet
-		if (!((int((*username)[i]) >= 65 && int((*username)[i]) <= 90) && (int((*username)[i]) >= 97 && int((*username)[i]) <= 122)))
-		{
-			std::cout << std::setw(63 + (errorStatement1->length() / 2)) << *errorStatement1 << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-			int userInput = 0;
-			while (userInput != 13)
-			{
-				userInput = _getch();
-			}
-
-			makeAccount();
-		}
-		else
-		{
-			// Rewriting database
-			for (int j = 0; j < accountCount; j++)
-			{
-				if (j == 0)
-				{
-					databaseWRITE << ++accountCount;
-				}
-				std::getline(databaseREAD, *reWriteInfo);
-				databaseWRITE << *reWriteInfo << '\n';
-			}
-
-			databaseWRITE << *username << " ";
-			databaseWRITE << *password;
 		}
 	}
 
@@ -241,4 +152,34 @@ void mainPage()
 {
 	displayMainPage();
 
+}
+
+long int generateUserBankNumber()
+{
+	long int userBankNumber = 0;
+	std::random_device rd;
+	std::uniform_int_distribution<int> range(0, 9);
+
+	for (int i = 0; i < 10; i++)
+	{
+		userBankNumber *= 10;
+		userBankNumber += range(rd);
+	}
+
+	return abs(userBankNumber);
+}
+
+int generateUserMoney()
+{
+	int userMoney = 0;
+	std::random_device rd;
+	std::uniform_int_distribution<int> range(0, 9);
+
+	for (int i = 0; i < range(rd); i++)
+	{
+		userMoney *= 10;
+		userMoney += range(rd);
+	}
+
+	return abs(userMoney);
 }

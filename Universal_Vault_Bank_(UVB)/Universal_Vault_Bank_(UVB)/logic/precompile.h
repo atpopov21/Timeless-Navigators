@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <random>
 #include <string>
 #include <conio.h>
 #include <fstream>

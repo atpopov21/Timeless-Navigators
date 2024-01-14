@@ -53,6 +53,6 @@ void entryVoilation()	// DONE
 void successfulRegistration()
 {
 	system("cls");
-	std::cout << "Successful Registration!";
+	std::cout << "Successful Registration!" << '\n';
 	system("pause");
 }

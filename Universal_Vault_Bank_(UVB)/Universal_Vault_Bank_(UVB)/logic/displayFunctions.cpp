@@ -195,7 +195,34 @@ void displayMainPage(std::string& username, std::string& password, std::string& 
 
 void displayDigitalWill()
 {
+	int consoleWidth = 80;
+	cout << " /$$   /$$ /$$    /$$ /$$$$$$$\n"
+		<< "| $$  | $$| $$   | $$| $$__  $$\n"
+		<< "| $$  | $$| $$   | $$| $$  \\ $$\n"
+		<< "| $$  | $$|  $$ / $$/| $$$$$$$/\n"
+		<< "| $$  | $$ \\  $$ $$/ | $$__  $$\n"
+		<< "| $$  | $$  \\  $$$/  | $$  \\ $$\n"
+		<< "|  $$$$$$/   \\  $/   | $$$$$$$/\n"
+		<< " \\______/     \\_/    |_______/ \n";
+	cout << setw(consoleWidth) << setfill('-') << "" << setfill(' ') << "\n";
+	const char borderChar = '*';
 
+	// Top border for menu
+	cout << setw(consoleWidth) << setfill(borderChar) << "" << setfill(' ') << "\n";
+
+	// Menu title
+	cout << " DIGITAL WILL " << "\n";
+
+	// Separator line
+	cout << setw(consoleWidth) << setfill(borderChar) << "" << setfill(' ') << "\n";
+
+	// Menu options
+	cout << "| 1. Option 1 |\n";
+	cout << "| 2. Option 2 |\n";
+	cout << "| 3. Option 3 |\n";
+	cout << "\n";
+	// Bottom border for menu
+	cout << setw(consoleWidth) << setfill(borderChar) << "" << setfill(' ') << "\n";
 }
 
 void entryVoilation()	// DONE

@@ -9,4 +9,4 @@ bool makeAccount();
 void mainPage(bool checkForLogin);
 long int generateUserBankNumber();
 int generateUserMoney();
-void forgotPassword();
+//bool forgotPassword();

@@ -1,6 +1,6 @@
-﻿  dataManager.cpp
-C:\Users\Nikoleta\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.cpp(404,6): error C2084: function 'void forgotPassword(void)' already has a body
-C:\Users\Nikoleta\Documents\GitHub\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\dataManager.h(12,6): message : see previous definition of 'forgotPassword'
-  displayFunctions.cpp
-  main.cpp
-  Generating Code...
+﻿  displayFunctions.cpp
+C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\displayFunctions.cpp(119,15): warning C4129: '-': unrecognized character escape sequence
+C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\displayFunctions.cpp(178,16): warning C4129: '-': unrecognized character escape sequence
+C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\displayFunctions.cpp(234,16): warning C4129: '-': unrecognized character escape sequence
+C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\Universal_Vault_Bank_(UVB)\logic\displayFunctions.cpp(479,15): warning C4129: '-': unrecognized character escape sequence
+  Universal_Vault_Bank_(UVB).vcxproj -> C:\Users\Aleksandar\Desktop\Timeless-Navigators\Universal_Vault_Bank_(UVB)\x64\Debug\Universal_Vault_Bank_(UVB).exe

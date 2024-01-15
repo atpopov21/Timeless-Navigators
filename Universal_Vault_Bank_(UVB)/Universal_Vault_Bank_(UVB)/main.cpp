@@ -9,7 +9,6 @@ int main()
 
 	SMALL_RECT rect = { 0, 0, 126, 50 }; // Adjust the values as needed
 	SetConsoleWindowInfo(console, TRUE, &rect);
-
 	SetWindowLong(console, GWL_STYLE, GetWindowLong(console, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
 
 	// Reading database
@@ -32,7 +31,6 @@ int main()
 	{
 		if (makeAccount())
 		{
-			successfulRegistration();
 			mainPage(false);
 		}
 	}

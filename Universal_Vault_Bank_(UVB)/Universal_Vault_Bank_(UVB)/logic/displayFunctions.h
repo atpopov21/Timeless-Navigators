@@ -3,7 +3,8 @@
 void displayADMINpage();
 void displayAccountCheckPage();
 void displayAccountPage(std::string& username, std::string& password, std::string& securityQuestion, bool makeAccount);
-void displayMainPage(std::string& username, std::string& password, std::string& money);
+bool displayMainPage(std::string& username, std::string& userID, std::string& money);
 void displayDigitalWill();
+bool displayForgotPasswordCheck();
+bool displayQuestionCheck();
 void entryVoilation();
-void successfulRegistration();

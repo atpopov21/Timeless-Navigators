@@ -46,5 +46,8 @@
     <Text Include="data\userSecurityData.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="data\digitalWill.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

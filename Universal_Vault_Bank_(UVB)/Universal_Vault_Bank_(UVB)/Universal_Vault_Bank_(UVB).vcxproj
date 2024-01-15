@@ -137,6 +137,7 @@
     <ClInclude Include="logic\precompile.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="data\digitalWill.txt" />
     <Text Include="data\userBankData.txt" />
     <Text Include="data\userData.txt" />
     <Text Include="data\userSecurityData.txt" />

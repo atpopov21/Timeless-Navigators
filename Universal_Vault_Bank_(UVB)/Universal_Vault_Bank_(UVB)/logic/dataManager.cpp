@@ -113,14 +113,18 @@ bool checkForAccount()
 
 bool accessAccount(std::ifstream& database)
 {
+	HANDLE colour = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	// Declaring and initializing different variables
 	int countFailedAttempts = 0, countUser = 0;
+	bool userForgotPassword = false;
 	std::string* username = new std::string(), *password = new std::string();
 	std::string* checkCredentials = new std::string();
 	std::string* accountNotFound = new std::string("Account not found. Please try again."), *instructions = new std::string("Press \"Enter\" to continue...");
 
 	if (!database.is_open())
 	{
+		SetConsoleTextAttribute(colour, 4);
 		std::cout << "FATAL ERORR => Database failed to open.";
 	}
 
@@ -131,6 +135,8 @@ bool accessAccount(std::ifstream& database)
 
 		if (*username == "ADMIN" && *password == "admin14-1-24-20:44")
 		{
+			*usernameLogged = *username;
+
 			// Closing database and releasing memory
 			database.close();
 			delete (username);
@@ -138,8 +144,6 @@ bool accessAccount(std::ifstream& database)
 			delete (checkCredentials);
 			delete (accountNotFound);
 			delete (instructions);
-
-			*usernameLogged = "ADMIN";
 
 			return true;
 		}
@@ -150,6 +154,8 @@ bool accessAccount(std::ifstream& database)
 			std::getline(database, *checkCredentials);
 			if (*checkCredentials == (*username + " " + *password))
 			{
+				*usernameLogged = *username;
+
 				// Closing database and releasing memory
 				database.close();
 				delete (username);
@@ -157,8 +163,6 @@ bool accessAccount(std::ifstream& database)
 				delete (checkCredentials);
 				delete (accountNotFound);
 				delete (instructions);
-
-				*usernameLogged = *username;
 
 				retrieveLoginDataFromFile(countUser);
 
@@ -169,6 +173,8 @@ bool accessAccount(std::ifstream& database)
 
 		if (*checkCredentials == (*username + " " + *password))
 		{
+			*usernameLogged = *username;
+
 			// Closing database and releasing memory
 			database.close();
 			delete (username);
@@ -176,8 +182,6 @@ bool accessAccount(std::ifstream& database)
 			delete (checkCredentials);
 			delete (accountNotFound);
 			delete (instructions);
-
-			*usernameLogged = *username;
 
 			retrieveLoginDataFromFile(countUser);
 
@@ -197,11 +201,33 @@ bool accessAccount(std::ifstream& database)
 			return false;
 		}
 
+		if (countFailedAttempts == 4)
+		{
+			if (displayForgotPasswordCheck())
+			{
+				if (displayQuestionCheck())
+				{
+					userForgotPassword = true;
+				}
+			}
+		}
+
+		if (userForgotPassword)
+		{
+			break;
+		}
+
+		SetConsoleTextAttribute(colour, 4);
 		countFailedAttempts++;
 		std::cout << std::setw(63 + (accountNotFound->length() / 2))<< *accountNotFound << '\n' << std::setw(72) << "Retries remaining: " << 6 - countFailedAttempts << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
 
 		waitForKey();
 	} while (*checkCredentials != (*username + " " + *password));
+
+	if (userForgotPassword)
+	{
+		//forgotPassword();
+	}
 
 	// Closing database and releasing memory
 	database.close();
@@ -215,6 +241,8 @@ bool accessAccount(std::ifstream& database)
 
 bool makeAccount()
 {
+	HANDLE colour = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	system("cls");
 	// Loading databases
 	std::ifstream userDataREAD("data/userData.txt");
@@ -250,7 +278,8 @@ bool makeAccount()
 		// Check for empty username holder
 		if ((*username)[0] == 0 || (*username)[0] == 32)
 		{
-			std::cout << "Invalid username...";
+			SetConsoleTextAttribute(colour, 4);
+			std::cout << std::setw(73) << "Invalid username...";
 
 			waitForKey();
 			makeAccount();
@@ -264,7 +293,8 @@ bool makeAccount()
 			*checkForAccountDuplicate += " " + surname;
 			if (*checkForAccountDuplicate == *username)
 			{
-				std::cout << "Username already exists...";
+				SetConsoleTextAttribute(colour, 4);
+				std::cout << std::setw(76) << "Username already exists...";
 
 				waitForKey();
 				makeAccount();
@@ -276,7 +306,8 @@ bool makeAccount()
 			// Check if symbols are from the alphabet
 			if (!(((*username)[i] >= 65 && (*username)[i] <= 90) || ((*username)[i] >= 97 && (*username)[i] <= 122) || (*username)[i] == 32))
 			{
-				std::cout << "Use symbols only from the alphabet...";
+				SetConsoleTextAttribute(colour, 4);
+				std::cout << std::setw(82) << "Use symbols only from the alphabet...";
 
 				waitForKey();
 				makeAccount();
@@ -286,7 +317,8 @@ bool makeAccount()
 		// Check if the first symbol is in uppercase
 		if (!((*username)[0] >= 65 && (*username)[0] <= 90))
 		{
-			std::cout << "First letter should be in uppercase...";
+			SetConsoleTextAttribute(colour, 4);
+			std::cout << std::setw(82) << "First letter should be in uppercase...";
 
 			waitForKey();
 			makeAccount();
@@ -304,7 +336,8 @@ bool makeAccount()
 						// Check if the symbol is in uppercase
 						if (!((*username)[i] >= 65 && (*username)[i] <= 90))
 						{
-							std::cout << "Surname letter should be in uppercase...";
+							SetConsoleTextAttribute(colour, 4);
+							std::cout << std::setw(83) << "Surname letter should be in uppercase...";
 
 							waitForKey();
 							makeAccount();
@@ -320,7 +353,8 @@ bool makeAccount()
 				{
 					if (!((*username)[i] >= 97 && (*username)[i] <= 122))
 					{
-						std::cout << "Invalid username...";
+						SetConsoleTextAttribute(colour, 4);
+						std::cout << std::setw(73) << "Invalid username...";
 
 						waitForKey();
 						makeAccount();
@@ -332,7 +366,8 @@ bool makeAccount()
 		// Check for empty password holder
 		if ((*password)[0] == 0 || (*password)[0] == 32)
 		{
-			std::cout << "Invalid password...";
+			SetConsoleTextAttribute(colour, 4);
+			std::cout << std::setw(73) << "Invalid password...";
 
 			waitForKey();
 			makeAccount();
@@ -341,7 +376,8 @@ bool makeAccount()
 		// Check for existing surname
 		if (checkForSpace == 0)
 		{
-			std::cout << "Invalid username...";
+			SetConsoleTextAttribute(colour, 4);
+			std::cout << std::setw(73) << "Invalid username...";
 
 			waitForKey();
 			makeAccount();
@@ -356,13 +392,18 @@ bool makeAccount()
 
 			*usernameLogged = *username;
 
-			std::cout << "Registration successful!\n";
+			SetConsoleTextAttribute(colour, 2);
+			std::cout << std::setw(75) << "Successful Registration!" << '\n';
+			std::cout << std::setw(77) << "Press \"Enter\" to continue..." << '\n';
+			
+			waitForKey();
 			countWriteTime++;
 		}
 	}
 	else 
 	{
-		std::cout << "Error opening the user database file.\n";
+		SetConsoleTextAttribute(colour, 4);
+		std::cout << std::setw(82) << "Error opening the user database file.\n";
 	}
 
 	// Closing databases and releasing memory
@@ -390,9 +431,10 @@ void mainPage(bool checkForLogin)
 	}
 	else
 	{
-		displayMainPage(*usernameLogged, *userID, *userMoney);
-
-		std::cout << *usernameLogged << " " << *userID << " " << *userMoney;
+		if (displayMainPage(*usernameLogged, *userID, *userMoney))
+		{
+			displayDigitalWill();
+		}
 	}
 
 	// Closing database and releasing memory
@@ -401,89 +443,79 @@ void mainPage(bool checkForLogin)
 	delete (userMoney);
 }
 
-void forgotPassword()
+/*bool forgotPassword()		// make the question check before this function
 {
-	/*
-	#include <iostream>
-	#include <fstream>
-	#include <string>
+	// Check if the username is the same as in the file
+	std::ifstream userDataREAD("data/userData.txt");
+	std::string username;
 
-	int main() {
-		// Check if the username is the same as in the file
-		std::ifstream userFile("user_file.txt");
+	// Read the username from the file
+	std::string getUsername = "";
+	if (std::getline(userDataREAD, getUsername))
+	{
+		// Get the username from the user
+		
 
-		// Read the username from the file
-		std::string storedUsername;
-		if (std::getline(userFile, storedUsername)) {
-			// Get the username from the user
-			std::cout << "Enter username: ";
-			std::string enteredUsername;
-			std::getline(std::cin, enteredUsername);
-
-			// Compare the usernames
-			if (enteredUsername != storedUsername) {
-				std::cout << "Username does not match the one in the file." << std::endl;
-				return 0;
-			}
+		// Compare the usernames
+		if (username != getUsername)
+		{
+			std::cout << "Username does not match the one in the file." << std::endl;
+			//return 0;
 		}
-
-		// Close the username file
-		userFile.close();
-
-		// Check if two word are the same
-		std::ifstream stringFile("name.txt");
-
-		// Read a word from the file
-		std::string storedWord;
-		if (stringFile >> storedWord) {
-			// Get a word from the user
-			std::cout << "Âhat is your favourite food:";
-			std::string enteredString;
-			std::cin >> enteredString;
-
-			// Compare the word
-			if (enteredString != storedWord) {
-				std::cout << "The words are different." << std::endl;
-				return 0;
-			}
-		}
-
-		// Close the word file
-		stringFile.close();
-
-
-		// Enter and save a password to a file
-		std::ofstream passwordFile("password.txt");
-
-
-		std::cout << "Enter a new password: ";
-		std::string newPassword;
-		std::cin >> newPassword;
-		passwordFile << newPassword << std::endl;
-
-		passwordFile.close();
-
-		// Compare two passwords
-		std::cout << "Enter the password again for comparison: ";
-		std::string enteredPassword;
-		std::cin >> enteredPassword;
-
-		std::ifstream passwordReadFile("password.txt");
-
-		std::string storedPassword;
-		if (passwordReadFile >> storedPassword) {
-			if (enteredPassword == storedPassword) {
-				std::cout << "Passwords match." << std::endl;
-			}
-			else {
-				std::cout << "Passwords do not match." << std::endl;
-			}
-		}
-
-		passwordReadFile.close();
-
-		return 0;
 	}
 
-	*/
-}
+	// Close the username file
+	userDataREAD.close();
+
+	// Check if two word are the same
+	std::ifstream stringFile("name.txt");
+
+	// Read a word from the file
+	std::string storedWord;
+	if (stringFile >> storedWord) {
+		// Get a word from the user
+		std::cout << "Âhat is your favourite food:";
+		std::string enteredString;
+		std::cin >> enteredString;
+
+		// Compare the word
+		if (enteredString != storedWord) {
+			std::cout << "The words are different." << std::endl;
+			//return 0;
+		}
+	}
+
+	// Close the word file
+	stringFile.close();
+
+
+	// Enter and save a password to a file
+	std::ofstream passwordFile("password.txt");
+
+
+	std::cout << "Enter a new password: ";
+	std::string newPassword;
+	std::cin >> newPassword;
+	passwordFile << newPassword << std::endl;
+
+	passwordFile.close();
+
+	// Compare two passwords
+	std::cout << "Enter the password again for comparison: ";
+	std::string enteredPassword;
+	std::cin >> enteredPassword;
+
+	std::ifstream passwordReadFile("password.txt");
+
+	std::string storedPassword;
+	if (passwordReadFile >> storedPassword) {
+		if (enteredPassword == storedPassword) {
+			std::cout << "Passwords match." << std::endl;
+		}
+		else {
+			std::cout << "Passwords do not match." << std::endl;
+		}
+	}
+
+	passwordReadFile.close();
+}*/

@@ -18,36 +18,36 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logic\dataManager.cpp">
+    <ClCompile Include="services\dataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="logic\displayFunctions.cpp">
+    <ClCompile Include="services\displayFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logic\precompile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="logic\displayFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="logic\dataManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Text Include="database\userData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="database\digitalWill.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="database\userBankData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="database\userSecurityData.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\userData.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="data\userBankData.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="data\userSecurityData.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="data\digitalWill.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    <ClInclude Include="services\dataManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\displayFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="services\precompile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

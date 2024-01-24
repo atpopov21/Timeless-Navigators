@@ -127,20 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="logic\dataManager.cpp" />
-    <ClCompile Include="logic\displayFunctions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="services\dataManager.cpp" />
+    <ClCompile Include="services\displayFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="logic\dataManager.h" />
-    <ClInclude Include="logic\displayFunctions.h" />
-    <ClInclude Include="logic\precompile.h" />
+    <Text Include="database\digitalWill.txt" />
+    <Text Include="database\userBankData.txt" />
+    <Text Include="database\userData.txt" />
+    <Text Include="database\userSecurityData.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\digitalWill.txt" />
-    <Text Include="data\userBankData.txt" />
-    <Text Include="data\userData.txt" />
-    <Text Include="data\userSecurityData.txt" />
+    <ClInclude Include="services\dataManager.h" />
+    <ClInclude Include="services\displayFunctions.h" />
+    <ClInclude Include="services\precompile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

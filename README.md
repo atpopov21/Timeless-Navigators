@@ -46,4 +46,4 @@
 ## :clipboard: Presentation and Documentation <a name="documentation"></a>
 + [Presentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Timeless_Navigators.pptx)
 + [Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/Documentation.docx)
-+ [QA Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/QA%20Documentation.xlsx)
++ [QA Documentation](https://github.com/atpopov21/Timeless-Navigators/blob/main/Documents/QA_Documentation.ods)

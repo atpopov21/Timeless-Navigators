@@ -232,9 +232,33 @@ void displayAccountPage(std::string& username, std::string& password, std::strin
 		std::cout << std::setw(64) << "Username: ";
 		std::getline(std::cin, username);
 		std::cout << std::setw(64) << "Password: ";
-		std::getline(std::cin, password);
+		//std::getline(std::cin, password);
 
-		std::cout << std::setw(26);
+		int userInput = 0;
+		while (userInput != 13)
+		{
+			userInput = _getch();
+			if (userInput == 13)
+			{
+				break;
+			}
+
+			if (userInput == 8)
+			{
+				if (password.length() > 0)
+				{
+					password.pop_back();
+					std::cout << "\b \b";
+				}
+			}
+			else
+			{
+				password.push_back(userInput);
+				std::cout << "*";
+			}
+		}
+
+		std::cout << '\n' << std::setw(26);
 		for (int i = 0; i < 74; i++)
 		{
 			std::cout << '-';
@@ -288,8 +312,32 @@ void displayAccountPage(std::string& username, std::string& password, std::strin
 		std::cout << std::setw(64) << "Username: ";
 		std::getline(std::cin, username);
 		std::cout << std::setw(64) << "Password: ";
-		std::getline(std::cin, password);
-		std::cout << std::setw(64) << "Favourite food: ";
+		//std::getline(std::cin, password);
+
+		int userInput = 0;
+		while (userInput != 13)
+		{
+			userInput = _getch();
+			if (userInput == 13)
+			{
+				break;
+			}
+
+			if (userInput == 8)
+			{
+				if (password.length() > 0)
+				{
+					password.pop_back();
+					std::cout << "\b \b";
+				}
+			}
+			else
+			{
+				password.push_back(userInput);
+				std::cout << "*";
+			}
+		}
+		std::cout << '\n' << std::setw(64) << "Favourite food: ";
 		std::getline(std::cin, securityQuestion);
 
 		std::cout << std::setw(26);
@@ -591,8 +639,8 @@ bool displayQuestionCheck()
 	HANDLE colour = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	// Loading database
-	std::ifstream userDataREAD("data/userData.txt");
-	std::ifstream userSecurityDataREAD("data/userSecurityData.txt");
+	std::ifstream userDataREAD("database/userData.txt");
+	std::ifstream userSecurityDataREAD("database/userSecurityData.txt");
 	
 	// Declaring and initializing variables
 	int countUser = 0, localUserCounter = 0;
@@ -635,20 +683,10 @@ bool displayQuestionCheck()
 	// Check if the database contains the username
 	while (userDataREAD)
 	{
-		std::getline(userDataREAD, checkCredentials);
-
-		while (userDataREAD)
+		std::getline(std::cin, checkCredentials);
+		if (checkCredentials == username)
 		{
-			userDataREAD >> checkCredentials;
-			if (checkCredentials == username)
-			{
-				userReal = true;
-				break;
-			}
-		}
-
-		if (userReal)
-		{
+			userReal = true;
 			break;
 		}
 		countUser++;
@@ -657,7 +695,6 @@ bool displayQuestionCheck()
 	if (userReal)
 	{
 		std::cout << std::setw(60) << "What is your favourite food: ";
-
 		std::getline(std::cin, food);
 
 		// Check if database contains the food
@@ -673,6 +710,7 @@ bool displayQuestionCheck()
 					return true;
 				}
 			}
+			localUserCounter++;
 		}
 	}
 	else
@@ -694,7 +732,7 @@ bool displayQuestionCheck()
 		std::cout << '\n' << '\n';
 
 		SetConsoleTextAttribute(colour, 4);
-		std::cout << std::setw(63) << "Invalid username..." << '\n';
+		std::cout << std::setw(73) << "Invalid username..." << '\n';
 		SetConsoleTextAttribute(colour, 2);
 		waitForKey();
 		displayQuestionCheck();

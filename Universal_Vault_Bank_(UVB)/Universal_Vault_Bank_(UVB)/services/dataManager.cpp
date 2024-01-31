@@ -117,7 +117,6 @@ bool accessAccount(std::ifstream& database)
 
 	// Declaring and initializing different variables
 	int countFailedAttempts = 0, countUser = 0;
-	bool userForgotPassword = false;
 	std::string* username = new std::string(), *password = new std::string();
 	std::string* checkCredentials = new std::string();
 	std::string* accountNotFound = new std::string("Account not found. Please try again."), *instructions = new std::string("Press \"Enter\" to continue...");
@@ -188,26 +187,16 @@ bool accessAccount(std::ifstream& database)
 		{
 			if (displayForgotPasswordCheck())
 			{
-				userForgotPassword = true;
-			}
-		}
+				if (displayQuestionCheck())
+				{
 
-		if (userForgotPassword)
-		{
-			break;
+				}
+			}
 		}
 
 		SetConsoleTextAttribute(colour, 4);
 		countFailedAttempts++;
 		std::cout << std::setw(63 + (accountNotFound->length() / 2))<< *accountNotFound << '\n' << std::setw(72) << "Retries remaining: " << 6 - countFailedAttempts << '\n' << std::setw(63 + instructions->length() / 2) << *instructions;
-
-		if (userForgotPassword)
-		{
-			if (displayQuestionCheck())
-			{
-
-			}
-		}
 
 		waitForKey();
 	} while (*checkCredentials != (*username + " " + *password));
